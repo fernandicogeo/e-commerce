@@ -24,7 +24,7 @@ class DatabaseSeeder extends Seeder
             Item::create([
                 'name' => 'Barang ' . $i,
                 'description' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus asperiores voluptatum dolorum illum officia dignissimos sequi qui sed nemo similique.',
-                'price' => 'Rp' . rand(10, 100) . '.000',
+                'price' => rand(10, 100) * 1000,
                 'stock' => rand(1, 50),
                 'created_at' => now(),
                 'updated_at' => now(),

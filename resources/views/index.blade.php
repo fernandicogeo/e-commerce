@@ -28,15 +28,18 @@
     
     <!-- About-Area -->
     <section class="section-padding">
-        <div class="container">
+        <div class="container text-center">
+            <h2 class="wow" style="font-weight: bold;color:#2B4A9D">Items</h2>
             <div class="row justify-content-center">
                 @foreach ($items as $item)
                 <div class="card m-3" style="max-width: 30%;">
-                    <img src="{{ asset('style/images/logo-name.png') }}" alt="Logo" class="card-img-top">
-                    <div class="card-body text-center">
-                        <h4 style="font-weight: bold">{{ $item->name }}</h4>
-                        <p class="card-text">Harga : {{ $item->price }}, Stock : {{ $item->stock }}</p>
-                    </div>
+                    <a href="{{ route('item.detail', $item->id) }}">
+                        <img src="{{ asset('style/images/logo-name.png') }}" alt="Logo" class="card-img-top">
+                        <div class="card-body text-center">
+                            <h4 style="font-weight: bold">{{ $item->name }}</h4>
+                            <p class="card-text">Harga : {{ $item->price }}, Stock : {{ $item->stock }}</p>
+                        </div>
+                    </a>
                 </div>
                 @endforeach
             </div>

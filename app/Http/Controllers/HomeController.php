@@ -21,4 +21,10 @@ class HomeController extends Controller
         $items = Item::all();
         return view('contact-us', compact('items'));
     }
+
+    public function item_detail($id)
+    {
+        $item = Item::where('id', $id)->get();
+        return view('item-detail', compact('item'));
+    }
 }
