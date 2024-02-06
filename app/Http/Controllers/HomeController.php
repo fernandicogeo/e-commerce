@@ -27,4 +27,9 @@ class HomeController extends Controller
         $item = Item::where('id', $id)->get();
         return view('item-detail', compact('item'));
     }
+
+    public function login()
+    {
+        return view('login');
+    }
 }

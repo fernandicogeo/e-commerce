@@ -63,7 +63,7 @@
                     <ul class="nav navbar-nav mainmenu">
                         <li class="@yield('home')"><a href="{{ route('home') }}">Beranda</a></li>
                         <li class="@yield('contact-us')"><a href="{{ route('contact-us') }}">Hubungi Kami</a></li>
-                        <li class="@yield('login')"><a href="{{ route('home') }}">Login</a></li>
+                        <li class="@yield('login')"><a href="{{ route('login') }}">Login</a></li>
                     </ul>
                 </div>
             </div>

@@ -413,8 +413,7 @@ input:-webkit-autofill:focus {
 
 .home-area {
     width: 100%;
-    background: url('images/bg-genbi.jpg') no-repeat scroll center bottom / cover;
-    padding-top: 27vh;
+    padding-top: 20vh;
     color: #ffffff;
     margin-bottom: 100px;
 }
