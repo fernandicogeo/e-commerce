@@ -12,8 +12,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-xs-12 col-md-5">
-                    <img src="{{ asset('style/images/logo-name.png') }}" alt="Logo">
-                    <div class="space-70"></div>
+                    <img src="{{ asset('style/images/logo-name.png') }}" alt="Logo" class="img-padbot">
                 </div>
                 <div class="col-xs 12 col-md-7 mt-5">
                     <h1 class="wow" style="font-weight: bold">Selamat Datang di Website Easy Data!</h1>

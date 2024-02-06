@@ -19,3 +19,4 @@ Route::get('/contact-us', [HomeController::class, 'index_contact_us'])->name('co
 Route::get('/item/{id}', [HomeController::class, 'item_detail'])->name('item.detail');
 Route::get('/login', [HomeController::class, 'login'])->name('login');
 Route::get('/register', [HomeController::class, 'register'])->name('register');
+Route::post('/register', [HomeController::class, 'store'])->name('register.store');

@@ -1291,13 +1291,15 @@ input:-webkit-autofill:focus {
 
 
 /*untuk layar device berukuran besar*/
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: 1000px) {
    .post-single:after {
         content: "";
         clear: both;
         display: table;
     }
-
+    .img-padbot {
+        padding-bottom: 15vh;
+    }
     .post-single {
         padding: 15px 20px;
         height: 450px;
