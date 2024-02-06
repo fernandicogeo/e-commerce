@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Item;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -14,7 +15,8 @@ class HomeController extends Controller
     public function index()
     {
         $items = Item::all();
-        return view('index', compact('items'));
+        $user = Auth::user();
+        return view('index', compact('items', 'user'));
     }
 
     public function index_contact_us()
@@ -32,6 +34,32 @@ class HomeController extends Controller
     public function login()
     {
         return view('login');
+    }
+
+    public function authenticate(Request $request)
+    {
+        $request->validate([
+            'email' => 'required',
+            'password' => 'required',
+        ]);
+
+        $credentials = $request->only(['password']);
+        $email = $request->email;
+
+        // Check if the input is an email
+        if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            if (Auth::guard('web')->attempt(['email' => $email, 'password' => $credentials['password']])) {
+                if (Auth::user()->role === "admin") {
+                    $request->session()->regenerate();
+                    return redirect(route('dashboard'));
+                } else {
+                    $request->session()->regenerate();
+                    return redirect(route('home'));
+                }
+            }
+        }
+
+        return back()->with('loginError', 'Email atau password salah!');
     }
 
     public function register()

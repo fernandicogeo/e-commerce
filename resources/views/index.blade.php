@@ -15,7 +15,11 @@
                     <img src="{{ asset('style/images/logo-name.png') }}" alt="Logo" class="img-padbot">
                 </div>
                 <div class="col-xs 12 col-md-7 mt-5">
+                    @auth
+                    <h1 class="wow" style="font-weight: bold">Selamat Datang {{ $user->name }} di Website Easy Data!</h1>
+                    @else
                     <h1 class="wow" style="font-weight: bold">Selamat Datang di Website Easy Data!</h1>
+                    @endauth
                     <div class="desc wow">
                         Easy Data merupakan jasa konsultasi data berbasis web yang bergerak dalam didang pengolahan data dan analisis data serta kursus untuk menunjang dan mengurangi ketidakmahiran dalam penggunaan software pengolahan data.
                     </div>

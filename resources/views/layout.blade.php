@@ -63,7 +63,19 @@
                     <ul class="nav navbar-nav mainmenu">
                         <li class="@yield('home')"><a href="{{ route('home') }}">Beranda</a></li>
                         <li class="@yield('contact-us')"><a href="{{ route('contact-us') }}">Hubungi Kami</a></li>
+                        @auth
+                        <li>
+                            <form action="{{ route('logout') }}" method="post">
+                                @csrf
+                                <button type="submit" class="nav-link btn" style="font-weight: bold; color: white; font-size: 15px">
+                                  Logout <i class="nav-icon fas fa-sign-out-alt" style="color: white"></i>
+                                </button>
+                              </form>
+                        </li>
+                        @endauth
+                        @guest
                         <li class="@yield('login')"><a href="{{ route('login') }}">Login</a></li>
+                        @endguest
                     </ul>
                 </div>
             </div>

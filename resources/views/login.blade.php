@@ -36,14 +36,21 @@
                     <img src="{{ asset('style/images/logo-name.png') }}" alt="Logo" class="img-padbot">
                 </div>
                 <div class="col-xs 12 col-md-7 mt-5">
-                    <form class="mb-5 mt-5">
+                    <form class="mb-5 mt-5" action="{{ route('login.authenticate') }}" method="post" enctype="multipart/form-data">
+                        @csrf
                         <div class="mb-3">
-                            <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp">
+                            <label for="email" class="form-label @error('email') is-invalid @enderror">Email</label>
+                            <input type="email" class="form-control" id="email" name="email" required>
+                            @error('email')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="mb-5">
-                            <label for="password" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="password" name="password">
+                            <label for="password" class="form-label @error('password') is-invalid @enderror">Password</label>
+                            <input type="password" class="form-control" id="password" name="password" required>
+                            @error('password')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
                         <button type="submit" class="btn btn-primary" style="background-color: #2B4A9D;">Login</button>
                     </form>

@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\Item;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -13,13 +14,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // \App\Models\User::factory(10)->create();
-
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
-
         for ($i = 1; $i <= 10; $i++) {
             Item::create([
                 'name' => 'Barang ' . $i,
@@ -30,5 +24,21 @@ class DatabaseSeeder extends Seeder
                 'updated_at' => now(),
             ]);
         }
+
+        User::create([
+            'name' => 'admin',
+            'nik' => '123',
+            'email' => 'admin@gmail.com',
+            'password' => bcrypt('123'),
+            'role' => 'admin'
+        ]);
+
+        User::create([
+            'name' => 'fernandico',
+            'nik' => '123',
+            'email' => 'fernandico.geovardo01@gmail.com',
+            'password' => bcrypt('123'),
+            'role' => 'user'
+        ]);
     }
 }
