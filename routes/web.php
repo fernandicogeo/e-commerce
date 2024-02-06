@@ -24,7 +24,11 @@ Route::get('/register', [HomeController::class, 'register'])->name('register');
 Route::post('/register', [HomeController::class, 'store'])->name('register.store');
 Route::post('/logout', [DashboardController::class, 'logout'])->name('logout');
 
-Route::middleware('auth:web')->group(function () {
+Route::middleware(['auth:web', 'checkrole:admin'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::post('/logout', [DashboardController::class, 'logout'])->name('logout');
+});
+
+Route::middleware('auth:web')->group(function () {
     Route::post('/logout', [DashboardController::class, 'logout'])->name('logout');
 });

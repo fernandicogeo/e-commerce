@@ -64,6 +64,7 @@
                         <li class="@yield('home')"><a href="{{ route('home') }}">Beranda</a></li>
                         <li class="@yield('contact-us')"><a href="{{ route('contact-us') }}">Hubungi Kami</a></li>
                         @auth
+                        <li class="@yield('contact-us')"><a href="{{ route('contact-us') }}">Keranjang</a></li>
                         <li>
                             <form action="{{ route('logout') }}" method="post">
                                 @csrf
