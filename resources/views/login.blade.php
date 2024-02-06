@@ -15,16 +15,6 @@
         color: #2B4A9D;
     }
 </style>
-
-    @if (session()->has('pesan'))
-    <script>
-        alert("{{ session('pesan') }}")
-    </script>
-    @elseif (session()->has('loginError'))
-    <script>
-    alert("{{ session('loginError') }}")
-    </script>
-    @endif
     <!-- Home-Area -->
     <header class="home-area overlay" id="home_page">
         <div class="container">

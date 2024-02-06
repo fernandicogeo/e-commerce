@@ -31,6 +31,7 @@
         <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
         <!-- CSS -->
         <link href="{{ asset('/style/product-page/style.css') }}" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
         <style>
             icon-shape {
                 display: inline-flex;
@@ -44,6 +45,9 @@
                 width: 2rem;
                 height: 2rem;
                 
+            }
+            .toast-success, .toast-error, .toast-info, .toast-warning {
+                font-size: 15px;
             }
         </style>
     </head>
@@ -123,10 +127,23 @@
         <script src="{{ asset('/style/js/wow.min.js') }}"></script>
         <!--Main-active-JS-->
         <script src="{{ asset('/style/js/main.js') }}"></script>
-        
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js" charset="utf-8"></script>
     <script src="{{ asset('/style/product-page/script.js') }}" charset="utf-8"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    @if (session()->has('pesan'))
+    <script>
+      toastr.success("{{ session('pesan') }}");
+    </script>
+    @elseif (session()->has('pesanError'))
+    <script>
+        toastr.error("{{ session('pesanError') }}");
+    </script>
+    @elseif (session()->has('pesanInfo'))
+    <script>
+      toastr.warning("{{ session('pesanInfo') }}");
+    </script>
+    @endif
     </body>
 </html>

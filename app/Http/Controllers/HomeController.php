@@ -59,7 +59,7 @@ class HomeController extends Controller
             }
         }
 
-        return back()->with('loginError', 'Email atau password salah!');
+        return back()->with('pesanError', 'Email atau password anda salah!');
     }
 
     public function register()

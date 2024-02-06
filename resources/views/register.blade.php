@@ -15,15 +15,6 @@
         color: #2B4A9D;
     }
 </style>
-@if (session()->has('pesan'))
-<script>
-    alert("{{ session('pesan') }}")
-</script>
-@elseif (session()->has('loginError'))
-<script>
-alert("{{ session('loginError') }}")
-</script>
-@endif
     <!-- Home-Area -->
     <header class="home-area overlay" id="home_page">
         <div class="container">
@@ -39,19 +30,19 @@ alert("{{ session('loginError') }}")
                         @csrf
                         <div class="mb-3">
                             <label for="name" class="form-label">Nama</label>
-                            <input type="name" class="form-control" id="name" name="name">
+                            <input type="name" class="form-control" id="name" name="name" required>
                         </div>
                         <div class="mb-3">
                             <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp">
+                            <input type="email" class="form-control" id="email" name="email" required>
                         </div>
                         <div class="mb-3">
                             <label for="nik" class="form-label">NIK</label>
-                            <input type="nik" class="form-control" id="nik" name="nik">
+                            <input type="nik" class="form-control" id="nik" name="nik" required>
                         </div>
                         <div class="mb-5">
                             <label for="password" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="password" name="password">
+                            <input type="password" class="form-control" id="password" name="password" required>
                         </div>
                         <button type="submit" class="btn btn-primary" style="background-color: #2B4A9D;">Register</button>
                     </form>
