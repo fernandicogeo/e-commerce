@@ -1,8 +1,9 @@
 <?php
 
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,5 +31,7 @@ Route::middleware(['auth:web', 'checkrole:admin'])->group(function () {
 });
 
 Route::middleware('auth:web')->group(function () {
+    Route::get('/cart', [UserController::class, 'index'])->name('cart');
+    Route::post('/add-cart', [UserController::class, 'store'])->name('add.cart');
     Route::post('/logout', [DashboardController::class, 'logout'])->name('logout');
 });

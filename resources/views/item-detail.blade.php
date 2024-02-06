@@ -73,43 +73,50 @@
                     <div class="right-column">
                         <div class="mt-5">
                             <?php $harga = 0; ?>
-                            @foreach ($item as $item)
-                            <div class="product-description">
-                                <span>Produk</span>
-                                <h1>{{ $item->name }}</h1>
-                                <p>{{ $item->description }}</p>
-                            </div>
-                            <div class="product-configuration">
-                                <div class="cable-config">
-                                    <span>Kuantitas, Stok : {{ $item->stock }}</span>
-                                    <div class="row-quant">
-                                        <div class="">
-                                            <span class="input-group-btn-quant">
-                                                <button type="button" class="btn btn-danger btn-number"  data-type="minus" data-field="quant[2]">
-                                                <span class="glyphicon glyphicon-minus" style="color: white"></span>
-                                                </button>
-                                            </span>
-                                        </div>
-                                        <div class="">
-                                            <input type="text" name="quant[2]" class="form-control input-number" value="1" min="1" max="{{ $item->stock }}" style="width: 60px">
-                                        </div>
-                                        <div class="">
-                                            <span class="input-group-btn-quant">
-                                                <button type="button" class="btn btn-success btn-number" data-type="plus" data-field="quant[2]">
-                                                    <span class="glyphicon glyphicon-plus" style="color: white"></span>
-                                                </button>
-                                            </span>
+                            
+                            <form class="mb-5 mt-5" action="{{ route('add.cart') }}" method="post" enctype="multipart/form-data">
+                                @csrf
+                                @foreach ($item as $item)
+                                <div class="product-description">
+                                    <span>Produk</span>
+                                    <h1>{{ $item->name }}</h1>
+                                    <p>{{ $item->description }}</p>
+                                </div>
+                                <div class="product-configuration">
+                                    <div class="cable-config">
+                                        <span>Kuantitas, Stok : {{ $item->stock }}</span>
+                                        <div class="row-quant">
+                                            <div class="">
+                                                <span class="input-group-btn-quant">
+                                                    <button type="button" class="btn btn-danger btn-number"  data-type="minus" data-field="quant[2]">
+                                                    <span class="glyphicon glyphicon-minus" style="color: white"></span>
+                                                    </button>
+                                                </span>
+                                            </div>
+                                            <div class="">
+                                                <input type="text" name="quantity" class="form-control input-number" value="1" min="1" max="{{ $item->stock }}" style="width: 60px">
+                                            </div>
+                                            <div class="">
+                                                <span class="input-group-btn-quant">
+                                                    <button type="button" class="btn btn-success btn-number" data-type="plus" data-field="quant[2]">
+                                                        <span class="glyphicon glyphicon-plus" style="color: white"></span>
+                                                    </button>
+                                                </span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="product-price">
-                                <span id="price">Rp{{ number_format($item->price) }}</span>
-                                <a href="#" class="cart-btn">Masukkan ke keranjang</a>
-                            </div>
-                            <?php $harga = $item->price;
-                             ?>
-                            @endforeach
+                                <input type="text" hidden name="item_name" value="{{ $item->name }}">
+                                <input type="text" hidden name="price" value="{{ $item->price }}">
+                                <input type="text" hidden name="item_id" value="{{ $item->id }}">
+                                <div class="product-price">
+                                    <span id="price">Rp{{ number_format($item->price) }}</span>
+                                    <button class="btn btn-submit cart-btn">Masukkan ke keranjang</button>
+                                </div>
+                                <?php $harga = $item->price;
+                                ?>
+                                @endforeach
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -119,7 +126,7 @@
 
 <script>
     function updatePrice() {
-        var quantity = parseInt($("input[name='quant[2]']").val());
+        var quantity = parseInt($("input[name='quantity']").val());
         var price = {{ $harga }}; // Initial price
         var totalPrice = quantity * price;
         $("#price").text("Rp" + totalPrice.toLocaleString('en-US'));
@@ -130,7 +137,7 @@
     
     fieldName = $(this).attr('data-field');
     type      = $(this).attr('data-type');
-    var input = $("input[name='"+fieldName+"']");
+    var input = $("input[name='quantity']");
     var currentVal = parseInt(input.val());
     if (!isNaN(currentVal)) {
         if (type == 'minus') {
