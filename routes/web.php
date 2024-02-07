@@ -33,5 +33,8 @@ Route::middleware(['auth:web', 'checkrole:admin'])->group(function () {
 Route::middleware('auth:web')->group(function () {
     Route::get('/cart', [UserController::class, 'index'])->name('cart');
     Route::post('/add-cart', [UserController::class, 'store'])->name('add.cart');
+    Route::get('/edit-cart/{id}', [UserController::class, 'edit'])->name('edit.cart');
+    Route::post('/edit-cart', [UserController::class, 'update'])->name('update.cart');
+    Route::post('/delete-cart/{id}', [UserController::class, 'delete'])->name('delete.cart');
     Route::post('/logout', [DashboardController::class, 'logout'])->name('logout');
 });

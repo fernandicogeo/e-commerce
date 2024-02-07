@@ -1,8 +1,8 @@
 @extends('layout')
 
-@section('title', 'Login')
+@section('title', 'Cart')
 
-@section('login', 'active')
+@section('cart', 'active')
 
 @section('isi')
 
@@ -16,13 +16,13 @@
     }
 </style>
     <!-- Home-Area -->
-    <header class="home-area overlay" id="home_page">
+    <header class="home-area overlay" id="home_page" style="margin-bottom: 350px">
         <div class="container">
             <div class=" row page-title text-center mt-3">
                 <h4 class="title wow" style="color: white">Keranjang</h4>
             </div>
             <div class="row">
-                <table class="table table-striped">
+                <table class="table table-striped table-primary">
                     <thead>
                       <tr>
                         <th scope="col">#</th>
@@ -41,7 +41,16 @@
                             <td>{{ $cart->quantity }}</td>
                             <td>{{ $cart->price }}</td>
                             <td>{{ $cart->total_price }}</td>
-                            <td>@mdo</td>
+                            <td>
+                                {{-- EDIT CART --}}
+                                    <a href="{{ route('edit.cart', $cart->id) }}" class="btn btn" data-toggle="modal"><i class="fa-solid fa-pen-to-square" style="color: #F0AD4E" title="edit"></i></a>
+                                </form>
+                                {{-- DELETE CART --}}
+                                <form action="{{ route('delete.cart', $cart->id) }}" method="post" class="d-inline">
+                                    @csrf
+                                    <button type="submit" class="btn btn"><i class="fa-solid fa-trash" style="color: #E04146" title="delete"></i></button>
+                                </form>
+                            </td>
                         </tr>
                         @endforeach
                     </tbody>
