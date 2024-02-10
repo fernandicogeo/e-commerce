@@ -51,6 +51,13 @@
             }
         </style>
     </head>
+    @if(Auth::check())
+    @php
+        $pendingPayment = \App\Models\Payment::where('user_id', Auth::user()->id)
+                                              ->where('status', 0)
+                                              ->exists();
+    @endphp
+    @endif
     <body data-spy="scroll" data-target=".mainmenu-area">
         <!-- NavBar -->
         <nav class="mainmenu-area" data-spy="affix" data-offset-top="200">
@@ -69,6 +76,9 @@
                         <li class="@yield('contact-us')"><a href="{{ route('contact-us') }}">Hubungi Kami</a></li>
                         @auth
                         <li class="@yield('cart')"><a href="{{ route('cart') }}">Keranjang</a></li>
+                        @if ($pendingPayment)
+                        <li class="@yield('payment')"><a href="{{ route('payment') }}">Pembayaran Tertunda</a></li>
+                        @endif
                         <li>
                             <form action="{{ route('logout') }}" method="post">
                                 @csrf

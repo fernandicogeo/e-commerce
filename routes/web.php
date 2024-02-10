@@ -1,8 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\DashboardController;
 
 /*
@@ -31,10 +32,15 @@ Route::middleware(['auth:web', 'checkrole:admin'])->group(function () {
 });
 
 Route::middleware('auth:web')->group(function () {
-    Route::get('/cart', [UserController::class, 'index'])->name('cart');
-    Route::post('/add-cart', [UserController::class, 'store'])->name('add.cart');
-    Route::get('/edit-cart/{id}', [UserController::class, 'edit'])->name('edit.cart');
-    Route::post('/edit-cart', [UserController::class, 'update'])->name('update.cart');
-    Route::post('/delete-cart/{id}', [UserController::class, 'delete'])->name('delete.cart');
+    // cart
+    Route::get('/cart', [CartController::class, 'index'])->name('cart');
+    Route::post('/add-cart', [CartController::class, 'store'])->name('add.cart');
+    Route::get('/edit-cart/{id}', [CartController::class, 'edit'])->name('edit.cart');
+    Route::post('/edit-cart', [CartController::class, 'update'])->name('update.cart');
+    Route::post('/delete-cart/{id}', [CartController::class, 'delete'])->name('delete.cart');
+    // payment
+    Route::get('/payment', [PaymentController::class, 'index'])->name('payment');
+    Route::post('/payment', [PaymentController::class, 'store'])->name('payment.store');
+
     Route::post('/logout', [DashboardController::class, 'logout'])->name('logout');
 });

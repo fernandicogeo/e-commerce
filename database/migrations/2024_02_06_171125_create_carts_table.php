@@ -13,15 +13,17 @@ return new class extends Migration
     {
         Schema::create('carts', function (Blueprint $table) {
             $table->id();
-            $table->string('user_id');
-            $table->string('user_name');
-            $table->string('item_id');
-            $table->string('item_name');
-            $table->string('quantity');
-            $table->string('price');
-            $table->string('total_price');
-            $table->string('isDeleted'); // 0 for not deleted, 1 for deleted
-            $table->string('isActived'); // 0 for active, 1 for cancel, 2 for checkouted
+            $table->string('user_id')->nullable();
+            $table->string('user_name')->nullable();
+            $table->string('item_id')->nullable();
+            $table->string('item_name')->nullable();
+            $table->string('quantity')->nullable();
+            $table->string('price')->nullable();
+            $table->string('total_price')->nullable();
+            $table->string('isDeleted')->nullable(); // 0 for not deleted, 1 for deleted
+            $table->string('isActived')->nullable(); // 0 for active, 1 for cancel, 2 for checkouted
+            $table->string('payment_id')->nullable();
+            $table->string('payment_total_price')->nullable();
             $table->timestamps();
         });
     }

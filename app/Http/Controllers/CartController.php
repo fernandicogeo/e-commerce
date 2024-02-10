@@ -4,10 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Cart;
 use App\Models\Item;
+use App\Models\Payment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class UserController extends Controller
+class CartController extends Controller
 {
     public function index()
     {
@@ -40,16 +41,21 @@ class UserController extends Controller
             ->where('isActived', 0)
             ->first();
 
-        if ($cartItem) {
-            $cartItem->update([
-                'quantity' => $cartItem->quantity + $validatedData['quantity'],
-                'total_price' => $cartItem->total_price + $validatedData['total_price']
-            ]);
-        } else {
-            Cart::create($validatedData);
-        }
+        $payment = Payment::where('user_id', Auth::user()->id)
+            ->where('status', 0)
+            ->first();
 
-        return back()->with('pesan', 'Anda berhasil menambahkan ' . $request->item_name . ' ke keranjang.');
+        if ($payment == null) {
+            if ($cartItem) {
+                $cartItem->update([
+                    'quantity' => $cartItem->quantity + $validatedData['quantity'],
+                    'total_price' => $cartItem->total_price + $validatedData['total_price']
+                ]);
+            } else {
+                Cart::create($validatedData);
+            }
+            return back()->with('pesan', 'Anda berhasil menambahkan ' . $request->item_name . ' ke keranjang.');
+        } else return back()->with('pesanError', 'Selesaikan terlebih dahulu pembayaran tertunda anda.');
     }
 
     public function edit($id)
