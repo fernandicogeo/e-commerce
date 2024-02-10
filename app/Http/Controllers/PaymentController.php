@@ -19,8 +19,32 @@ class PaymentController extends Controller
             ->where('status', 0)
             ->first();
 
-        if ($payment != null) return view('user.payment', compact('cart', 'payment'));
-        else return redirect(route('home'));
+        if ($payment != null) {
+            // MidTrans
+            // Set your Merchant Server Key
+            \Midtrans\Config::$serverKey = config('midtrans.server_key');
+            // Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
+            \Midtrans\Config::$isProduction = false;
+            // Set sanitization on (default)
+            \Midtrans\Config::$isSanitized = true;
+            // Set 3DS transaction for credit card to true
+            \Midtrans\Config::$is3ds = true;
+
+            $params = array(
+                'transaction_details' => array(
+                    'order_id' => $payment->id,
+                    'gross_amount' => $payment->total_price,
+                ),
+                'customer_details' => array(
+                    'id' => $payment->user_id,
+                    'name' => $payment->user_name,
+                ),
+            );
+
+            $snapToken = \Midtrans\Snap::getSnapToken($params);
+
+            return view('user.payment', compact('cart', 'payment', 'snapToken'));
+        } else return redirect(route('home'));
     }
 
     public function store(Request $request)

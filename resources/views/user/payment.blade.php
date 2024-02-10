@@ -5,6 +5,11 @@
 @section('payment', 'active')
 
 @section('isi')
+  <!-- @TODO: replace SET_YOUR_CLIENT_KEY_HERE with your client key -->
+  <script type="text/javascript"
+		src="https://app.stg.midtrans.com/snap/snap.js"
+    data-client-key="{{ config('midtrans.client_key') }}"></script>
+  <!-- Note: replace with src="https://app.midtrans.com/snap/snap.js" for Production environment -->
 
 <style>
     body {
@@ -52,13 +57,45 @@
                     </tbody>
                 </table>
                 <div class="row">
+                    <div class="col-lg-6 text-end">
+                        <button type="button" class="btn btn-success" id="pay-button">Bayar</button>
+                    </div>
                     <div class="col-lg-6">
-                        
+                        <form action="" method="post" class="d-inline">
+                            @csrf
+                            <button type="button" class="btn btn-danger">Cancel</button>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
     </header>
 
-
+    <script type="text/javascript">
+        // For example trigger on button clicked, or any time you need
+        var payButton = document.getElementById('pay-button');
+        payButton.addEventListener('click', function () {
+          // Trigger snap popup. @TODO: Replace TRANSACTION_TOKEN_HERE with your transaction token.
+          // Also, use the embedId that you defined in the div above, here.
+          window.snap.embed('{{ $snapToken }}', {
+            embedId: 'snap-container',
+            onSuccess: function (result) {
+              /* You may add your own implementation here */
+              alert("payment success!"); console.log(result);
+            },
+            onPending: function (result) {
+              /* You may add your own implementation here */
+              alert("wating your payment!"); console.log(result);
+            },
+            onError: function (result) {
+              /* You may add your own implementation here */
+              alert("payment failed!"); console.log(result);
+            },
+            onClose: function () {
+              /* You may add your own implementation here */
+              alert('you closed the popup without finishing the payment');
+            }
+          });
+        });
+      </script>
 @endsection
