@@ -19,7 +19,7 @@
     <header class="home-area overlay" id="home_page" style="margin-bottom: 350px">
         <div class="container">
             <div class=" row page-title text-center mt-3">
-                <h4 class="title wow" style="color: white">Pembayaran</h4>
+                <h4 class="title wow" style="color: white">Invoice</h4>
             </div>
             <div class="row">
               <div style="overflow-x:auto;">

@@ -11,7 +11,7 @@ class InvoiceController extends Controller
 {
     public function index($id)
     {
-        $cart = Cart::where('payment_id', $id)->first();
+        $cart = Cart::where('payment_id', $id)->get();
 
         $payment = Payment::where('id', $id)->first();
 
