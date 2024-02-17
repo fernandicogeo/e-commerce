@@ -43,5 +43,7 @@ Route::middleware('auth:web')->group(function () {
     Route::post('/payment', [PaymentController::class, 'store'])->name('payment.store');
     Route::post('/payment-cancel/{id}', [PaymentController::class, 'cancel'])->name('payment.cancel');
 
+    Route::get('/invoice/{id}', [PaymentController::class, 'cancel'])->name('payment.cancel');
+
     Route::post('/logout', [DashboardController::class, 'logout'])->name('logout');
 });

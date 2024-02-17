@@ -70,8 +70,18 @@ class PaymentController extends Controller
             $cartItem->update(['isActived' => '2']);
         }
 
-        Payment::create($validatedData);
+        $payment = Payment::create($validatedData);
+        // update payment_id dan payment_total_price
+        $cartIdsArray = explode(', ', $validatedData['cart_ids']);
 
+        foreach ($cartIdsArray as $cartId) {
+            $cartItem = Cart::where('id', $cartId)->first();
+
+            $cartItem->update([
+                'payment_id' => $payment->id,
+                'payment_total_price' => $payment->total_price,
+            ]);
+        }
         return redirect(route('payment'));
     }
 

@@ -100,6 +100,7 @@
           onSuccess: function (result) {
             /* You may add your own implementation here */
             alert("payment success!"); console.log(result);
+            window.location.href = '/invoice/{{ $payment->id }}'
           },
           onPending: function (result) {
             /* You may add your own implementation here */
