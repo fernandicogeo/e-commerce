@@ -111,6 +111,7 @@
                                 <ul>
                                     <li><a href="https://instagram.com/easy_data_" target="_blank">Instagram</a></li>
                                     <li><a href="mailto:easydata2302@gmail.com">Email</a></li>
+                                    <li><a href="{{ asset('Easy Data Term & Conditions.pdf') }}">Term & Conditions</a></li>
                                     {{-- <li><a href="https://api.whatsapp.com/send?phone={{ $about->whatsapp }}/">Whatsapp</a></li> --}}
                                 </ul>
                             </div>
