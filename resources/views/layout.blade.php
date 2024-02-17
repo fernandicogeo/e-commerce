@@ -89,6 +89,7 @@
                         @if ($pendingPayment)
                         <li class="@yield('payment')"><a href="{{ route('payment') }}">Pembayaran Tertunda</a></li>
                         @endif
+                        <li class="@yield('history')"><a href="{{ route('history') }}">Riwayat</a></li>
                         <li>
                             <form action="{{ route('logout') }}" method="post">
                                 @csrf

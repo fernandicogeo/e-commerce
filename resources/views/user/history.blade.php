@@ -1,8 +1,8 @@
 @extends('layout')
 
-@section('title', 'Payment')
+@section('title', 'Riwayat Pembelian')
 
-@section('payment', 'active')
+@section('history', 'active')
 
 @section('isi')
 
@@ -19,8 +19,9 @@
     <header class="home-area overlay" id="home_page" style="margin-bottom: 350px">
         <div class="container">
             <div class=" row page-title text-center mt-3">
-                <h4 class="title wow" style="color: white">Invoice</h4>
+                <h4 class="title wow" style="color: white">Riwayat Pembelian</h4>
             </div>
+            @foreach ($payment as $payment)
             <div class="row">
               <div style="overflow-x:auto;">
                 <table class="table table-striped table-primary">
@@ -35,6 +36,7 @@
                     </thead>
                     <tbody>
                         @foreach ($cart as $cart)
+                        @if ($cart->payment_id == $payment->id)
                         <tr>
                             <th scope="row">{{ $loop->iteration }}</th>
                             <td>{{ $cart->item_name }}</td>
@@ -42,19 +44,13 @@
                             <td>{{ $cart->price }}</td>
                             <td>{{ $cart->total_price }}</td>
                         </tr>
+                        @endif
                         @endforeach
-                        <tr>
-                            <td></td>
-                            <th>Total</th>
-                            <td></td>
-                            <td></td>
-                            <td>{{ $payment->total_price }}</td>
-                        </tr>
                     </tbody>
                 </table>
               </div>
-            
             </div>
+            @endforeach
         </div>
     </header>
 @endsection

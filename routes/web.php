@@ -5,7 +5,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\InvoiceController;
+use App\Http\Controllers\HistoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,7 +44,7 @@ Route::middleware('auth:web')->group(function () {
     Route::post('/payment', [PaymentController::class, 'store'])->name('payment.store');
     Route::post('/payment-cancel/{id}', [PaymentController::class, 'cancel'])->name('payment.cancel');
 
-    Route::get('/invoice/{id}', [InvoiceController::class, 'index'])->name('invoice');
+    Route::get('/history', [HistoryController::class, 'index'])->name('history');
 
     Route::post('/logout', [DashboardController::class, 'logout'])->name('logout');
 });
