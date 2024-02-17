@@ -108,6 +108,17 @@ class PaymentController extends Controller
         if ($hashed == $request->signature_key) {
             if ($request->transaction_status == 'capture') {
                 $payment = Payment::find($request->order_id);
+
+                $cartIdsArray = explode(', ', $payment->cart_ids);
+                foreach ($cartIdsArray as $cartId) {
+                    $cartItem = Cart::where('id', $cartId)
+                        ->where('isActived', 2)
+                        ->first();
+
+                    $cartItem->update([
+                        'isActived' => '3',
+                    ]);
+                }
                 $payment->update(['status' => '2']);
             }
         }

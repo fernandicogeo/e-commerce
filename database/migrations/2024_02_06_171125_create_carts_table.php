@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('price')->nullable();
             $table->string('total_price')->nullable();
             $table->string('isDeleted')->nullable(); // 0 for not deleted, 1 for deleted
-            $table->string('isActived')->nullable(); // 0 for active, 1 for cancel, 2 for checkouted
+            $table->string('isActived')->nullable(); // 0 for active, 1 for cancel, 2 for checkouted, 3 for paid
             $table->string('payment_id')->nullable();
             $table->string('payment_total_price')->nullable();
             $table->timestamps();
