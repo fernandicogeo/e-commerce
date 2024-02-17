@@ -49,6 +49,16 @@
             .toast-success, .toast-error, .toast-info, .toast-warning {
                 font-size: 15px;
             }
+            body {
+                display: flex;
+                flex-direction: column;
+                min-height: 100vh;
+                margin: 0;
+            }
+
+            main {
+                flex: 1;
+            }
         </style>
     </head>
     @if(Auth::check())

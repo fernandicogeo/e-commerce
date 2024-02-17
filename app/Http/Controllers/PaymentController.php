@@ -86,7 +86,6 @@ class PaymentController extends Controller
             'status' => '1',
         ]);
 
-
         $cartIdsArray = explode(', ', $payment->cart_ids);
 
         foreach ($cartIdsArray as $cartId) {
@@ -100,5 +99,17 @@ class PaymentController extends Controller
         }
 
         return redirect(route('cart'))->with('pesan', 'Anda berhasil membatalkan pembayaran.');
+    }
+
+    public function success(Request $request)
+    {
+        $serverKey = config('midtrans.server_key');
+        $hashed = hash("sha512", $request->order_id . $request->status_code . $request->gross_amount . $serverKey);
+        if ($hashed == $request->signature_key) {
+            if ($request->transaction_status == 'capture') {
+                $payment = Payment::find($request->order_id);
+                $payment->update(['status' => '2']);
+            }
+        }
     }
 }
