@@ -12,6 +12,7 @@ class PaymentController extends Controller
     public function index()
     {
         $cart = Cart::where('user_id', Auth::user()->id)
+            ->where('isDeleted', 0)
             ->where('isActived', 2)
             ->get();
 
@@ -72,5 +73,32 @@ class PaymentController extends Controller
         Payment::create($validatedData);
 
         return redirect(route('payment'));
+    }
+
+
+    public function cancel($id)
+    {
+        $payment = Payment::where('id', $id)
+            ->where('status', 0)
+            ->first();
+
+        $payment->update([
+            'status' => '1',
+        ]);
+
+
+        $cartIdsArray = explode(', ', $payment->cart_ids);
+
+        foreach ($cartIdsArray as $cartId) {
+            $cartItem = Cart::where('id', $cartId)
+                ->where('isActived', 2)
+                ->first();
+
+            $cartItem->update([
+                'isActived' => '1',
+            ]);
+        }
+
+        return redirect(route('cart'))->with('pesan', 'Anda berhasil membatalkan pembayaran.');
     }
 }

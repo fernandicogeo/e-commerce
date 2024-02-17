@@ -58,44 +58,59 @@
                 </table>
                 <div class="row">
                     <div class="col-lg-6 text-end">
-                        <button type="button" class="btn btn-success" id="pay-button">Bayar</button>
+                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal" id="pay-button">Bayar</button>
                     </div>
                     <div class="col-lg-6">
-                        <form action="" method="post" class="d-inline">
+                        <form action="{{ route('payment.cancel', $payment->id) }}" method="post" class="d-inline"> 
                             @csrf
-                            <button type="button" class="btn btn-danger">Cancel</button>
+                            <button type="submit" class="btn btn-danger">Cancel</button>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
     </header>
-
+    <div class="modal fade mt-5" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document"> <!-- Menggunakan class modal-dialog-centered untuk posisi modal di tengah -->
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Pembayaran</h5>
+          </div>
+          <div class="modal-body justify-content-center d-flex align-items-center"> <!-- Menggunakan class d-flex dan align-items-center untuk mengatur konten di tengah -->
+            <div id="snap-container"></div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
     <script type="text/javascript">
-        // For example trigger on button clicked, or any time you need
-        var payButton = document.getElementById('pay-button');
-        payButton.addEventListener('click', function () {
-          // Trigger snap popup. @TODO: Replace TRANSACTION_TOKEN_HERE with your transaction token.
-          // Also, use the embedId that you defined in the div above, here.
-          window.snap.embed('{{ $snapToken }}', {
-            embedId: 'snap-container',
-            onSuccess: function (result) {
-              /* You may add your own implementation here */
-              alert("payment success!"); console.log(result);
-            },
-            onPending: function (result) {
-              /* You may add your own implementation here */
-              alert("wating your payment!"); console.log(result);
-            },
-            onError: function (result) {
-              /* You may add your own implementation here */
-              alert("payment failed!"); console.log(result);
-            },
-            onClose: function () {
-              /* You may add your own implementation here */
-              alert('you closed the popup without finishing the payment');
-            }
-          });
+      // For example trigger on button clicked, or any time you need
+      var payButton = document.getElementById('pay-button');
+      payButton.addEventListener('click', function () {
+        // Trigger snap popup. @TODO: Replace TRANSACTION_TOKEN_HERE with your transaction token.
+        // Also, use the embedId that you defined in the div above, here.
+        window.snap.embed('{{ $snapToken }}', {
+          embedId: 'snap-container',
+          onSuccess: function (result) {
+            /* You may add your own implementation here */
+            alert("payment success!"); console.log(result);
+          },
+          onPending: function (result) {
+            /* You may add your own implementation here */
+            alert("wating your payment!"); console.log(result);
+          },
+          onError: function (result) {
+            /* You may add your own implementation here */
+            alert("payment failed!"); console.log(result);
+          },
+          onClose: function () {
+            /* You may add your own implementation here */
+            alert('you closed the popup without finishing the payment');
+          }
         });
-      </script>
+      });
+    </script>
 @endsection
