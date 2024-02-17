@@ -22,6 +22,7 @@
                 <h4 class="title wow" style="color: white">Keranjang</h4>
             </div>
             <div class="row">
+                <div style="overflow-x:auto;">
                 <table class="table table-striped table-primary">
                     <thead>
                       <tr>
@@ -78,6 +79,7 @@
                         </tr>
                     </tbody>
                   </table>
+                </div>
             </div>
         </div>
     </header>

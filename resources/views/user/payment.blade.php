@@ -27,6 +27,7 @@
                 <h4 class="title wow" style="color: white">Pembayaran</h4>
             </div>
             <div class="row">
+              <div style="overflow-x:auto;">
                 <table class="table table-striped table-primary">
                     <thead>
                       <tr>
@@ -56,27 +57,29 @@
                         </tr>
                     </tbody>
                 </table>
-                <div class="row">
-                    <div class="col-lg-6 text-end">
-                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal" id="pay-button">Bayar</button>
-                    </div>
-                    <div class="col-lg-6">
-                        <form action="{{ route('payment.cancel', $payment->id) }}" method="post" class="d-inline"> 
-                            @csrf
-                            <button type="submit" class="btn btn-danger">Cancel</button>
-                        </form>
-                    </div>
+              </div>
+              <div class="row justify-content-end">
+                <div class="col-auto">
+                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal" id="pay-button">Bayar</button>
                 </div>
+                <div class="col-auto">
+                    <form action="{{ route('payment.cancel', $payment->id) }}" method="post" class="d-inline"> 
+                        @csrf
+                        <button type="submit" class="btn btn-danger">Cancel</button>
+                    </form> 
+                </div>
+            </div>
+            
             </div>
         </div>
     </header>
     <div class="modal fade mt-5" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered" role="document"> <!-- Menggunakan class modal-dialog-centered untuk posisi modal di tengah -->
+      <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLabel">Pembayaran</h5>
           </div>
-          <div class="modal-body justify-content-center d-flex align-items-center"> <!-- Menggunakan class d-flex dan align-items-center untuk mengatur konten di tengah -->
+          <div class="modal-body justify-content-center d-flex align-items-center">
             <div id="snap-container"></div>
           </div>
           <div class="modal-footer">
