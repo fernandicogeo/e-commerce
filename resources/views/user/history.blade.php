@@ -21,7 +21,6 @@
             <div class=" row page-title text-center mt-3">
                 <h4 class="title wow" style="color: white">Riwayat Pembelian</h4>
             </div>
-            @foreach ($payment as $payment)
             <div class="row">
               <div style="overflow-x:auto;">
                 <table class="table table-striped table-primary">
@@ -36,7 +35,6 @@
                     </thead>
                     <tbody>
                         @foreach ($cart as $cart)
-                        @if ($cart->payment_id == $payment->id)
                         <tr>
                             <th scope="row">{{ $loop->iteration }}</th>
                             <td>{{ $cart->item_name }}</td>
@@ -44,13 +42,11 @@
                             <td>{{ $cart->price }}</td>
                             <td>{{ $cart->total_price }}</td>
                         </tr>
-                        @endif
                         @endforeach
                     </tbody>
                 </table>
               </div>
             </div>
-            @endforeach
         </div>
     </header>
 @endsection
