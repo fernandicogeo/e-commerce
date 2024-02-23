@@ -7,7 +7,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Data Pembeli (Paid)</h1>
+            <h1 class="m-0">Data Pembeli (Unpaid)</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -29,31 +29,17 @@
                     <th scope="col">Nama User</th>
                     <th scope="col">ID User</th>
                     <th scope="col">Email User</th>
-                    <th scope="col">Item</th>
-                    <th scope="col">Total</th>
+                    <th scope="col">NIK User</th>
                   </tr>
                 </thead>
                 <tbody>
-                    @foreach ($payment as $payment)
-                    @php
-                        $user = \App\Models\User::where('id', $payment->user_id)->first();
-                        $carts = \App\Models\Cart::whereIn('id', explode(',', $payment->cart_ids))->get();
-                    @endphp
+                    @foreach ($user as $user)
                     <tr>
                         <th scope="row">{{ $loop->iteration }}</th>
-                        <td>{{ $payment->user_name }}</td>
-                        <td>{{ $payment->user_id }}</td>
-                        <td>
-                          {{ $user->email }}
-                        </td>
-                        <td>
-                          <ul>
-                              @foreach ($carts as $cart)
-                                  <li>{{ $cart->item_name }} ({{ $cart->quantity }})</li> 
-                              @endforeach
-                          </ul>
-                        </td>
-                        <td>{{ $payment->total_price }}</td>
+                        <td>{{ $user->name }}</td>
+                        <td>{{ $user->id }}</td>
+                        <td>{{ $user->email }}</td>
+                        <td>{{ $user->nik }}</td>
                     </tr>
                     @endforeach
                 </tbody>

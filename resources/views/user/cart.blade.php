@@ -48,7 +48,7 @@
                             $cart_ids[] = $cart->id;?>
                             <td>
                                 {{-- EDIT CART --}}
-                                    <a href="{{ route('edit.cart', $cart->id) }}" class="btn btn" data-toggle="modal"><i class="fa-solid fa-pen-to-square" style="color: #F0AD4E" title="Edit"></i></a>
+                                    <a href="{{ route('edit.cart', $cart->id) }}" class="btn btn"><i class="fa-solid fa-pen-to-square" style="color: #F0AD4E" title="Edit"></i></a>
                                 </form>
                                 {{-- DELETE CART --}}
                                 <form action="{{ route('delete.cart', $cart->id) }}" method="post" class="d-inline">

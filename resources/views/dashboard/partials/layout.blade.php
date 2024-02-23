@@ -207,34 +207,42 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false" style="color: white">
           @auth
               <li class="nav-item">
-                <a href="/profile" class="nav-link">
-                    <i class="bi bi-person-circle"></i>
+                <a href="{{ route('dashboard') }}" class="nav-link">
+                  <i class="bi bi-credit-card-fill"></i>
                   <p>
-                    Profil
+                    Data Pembeli (Paid)
                   </p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="/schedule" class="nav-link">
-                    <i class="bi bi-calendar-check-fill"></i>
+                <a href="{{ route('dashboard.unpaid') }}" class="nav-link">
+                  <i class="bi bi-clock-fill"></i>
                   <p>
-                    Ajukan Pertemuan
+                    Data Pembeli (Unpaid)
                   </p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="/history" class="nav-link">
-                    <i class="bi bi-clock-history"></i>
+                <a href="{{ route('dashboard.canceled') }}" class="nav-link">
+                  <i class="bi bi-x-circle"></i>
                   <p>
-                    Riwayat
+                    Data Pembeli (Canceled)
                   </p>
                 </a>
               </li> 
               <li class="nav-item">
-                <a href="/update-password" class="nav-link">
-                    <i class="bi bi-lock-fill"></i>
+                <a href="{{ route('dashboard.users') }}" class="nav-link">
+                  <i class="bi bi-person-circle"></i>
                   <p>
-                    Update Password
+                    Data Pengguna
+                  </p>
+                </a>
+              </li> 
+              <li class="nav-item">
+                <a href="{{ route('dashboard.items') }}" class="nav-link">
+                  <i class="bi bi-archive-fill"></i>
+                  <p>
+                    Data Item
                   </p>
                 </a>
               </li> 

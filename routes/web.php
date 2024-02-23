@@ -29,6 +29,16 @@ Route::post('/logout', [DashboardController::class, 'logout'])->name('logout');
 
 Route::middleware(['auth:web', 'checkrole:admin'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/unpaid', [DashboardController::class, 'index_unpaid'])->name('dashboard.unpaid');
+    Route::get('/canceled', [DashboardController::class, 'index_canceled'])->name('dashboard.canceled');
+    Route::get('/users', [DashboardController::class, 'index_users'])->name('dashboard.users');
+    Route::get('/items', [DashboardController::class, 'index_items'])->name('dashboard.items');
+
+    Route::post('/add-item', [DashboardController::class, 'add_item'])->name('add.item');
+    Route::get('/edit-item/{id}', [DashboardController::class, 'edit_item'])->name('edit.item');
+    Route::post('/edit-item', [DashboardController::class, 'update_item'])->name('update.item');
+    Route::post('/delete-item/{id}', [DashboardController::class, 'delete_item'])->name('delete.item');
+
     Route::post('/logout', [DashboardController::class, 'logout'])->name('logout');
 });
 
