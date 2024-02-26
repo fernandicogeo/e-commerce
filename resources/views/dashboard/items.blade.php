@@ -35,6 +35,7 @@
                     <th scope="col">Deskripsi Barang</th>
                     <th scope="col">Harga Barang</th>
                     <th scope="col">Stok Barang</th>
+                    <th scope="col">Gambar</th>
                     <th scope="col">Aksi</th>
                   </tr>
                 </thead>
@@ -46,6 +47,13 @@
                         <td>{{ $item->description }}</td>
                         <td>{{ $item->price }}</td>
                         <td>{{ $item->stock }}</td>
+                        <td>
+                          <ul>
+                            <li><img src="/storage/app/public/{{ $item->pic1 }}" alt="Pic 1"></li>
+                            <li><img src="/storage/app/public/{{ $item->pic2 }}" alt="Pic 2"></li>
+                            <li><img src="/storage/app/public/{{ $item->pic2 }}" alt="Pic 3"></li>
+                          </ul>
+                        </td>
                         <td>
                             {{-- EDIT ITEM --}}
                             <a href="{{ route('edit.item', $item->id) }}" class="btn btn">
@@ -106,6 +114,27 @@
                     <label for="stock" class="form-label">Stok item</label>
                     <input type="number" class="form-control @error('stock') is-invalid @enderror" required id="stock" name="stock" value="{{ old('stock') }}">
                     @error('stock')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+                <div class="mb-3">
+                    <label for="pic1" class="form-label">Foto 1 item</label><small> Max: 2MB</small>
+                    <input type="file" class="form-control @error('pic1') is-invalid @enderror" required id="pic1" name="pic1" value="{{ old('pic1') }}">
+                    @error('pic1')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+                <div class="mb-3">
+                    <label for="pic2" class="form-label">Foto 2 item</label><small> Max: 2MB</small>
+                    <input type="file" class="form-control @error('pic2') is-invalid @enderror" required id="pic2" name="pic2" value="{{ old('pic2') }}">
+                    @error('pic2')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+                <div class="mb-3">
+                    <label for="pic3" class="form-label">Foto 3 item</label><small> Max: 2MB</small>
+                    <input type="file" class="form-control @error('pic3') is-invalid @enderror" required id="pic3" name="pic3" value="{{ old('pic3') }}">
+                    @error('pic3')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>

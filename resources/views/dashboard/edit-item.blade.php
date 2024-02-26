@@ -21,7 +21,7 @@
     <section class="content">
       <div class="container-fluid">
         <div class="row">
-          <div class="col-lg-8">
+          <div class="col-lg-8 mb-5">
             <form action="{{ route('update.item') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="mb-3">
@@ -51,7 +51,28 @@
                     @error('stock')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
-                </div>             
+                </div>       
+                <div class="mb-3">
+                    <label for="pic1" class="form-label">Foto 1 item</label><small> Max: 2MB (Kosongkan jika tidak ingin mengubah gambar)</small>
+                    <input type="file" class="form-control @error('pic1') is-invalid @enderror" id="pic1" name="pic1" value="{{ old('pic1') }}">
+                    @error('pic1')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+                <div class="mb-3">
+                    <label for="pic2" class="form-label">Foto 2 item</label><small> Max: 2MB (Kosongkan jika tidak ingin mengubah gambar)</small>
+                    <input type="file" class="form-control @error('pic2') is-invalid @enderror" id="pic2" name="pic2" value="{{ old('pic2') }}">
+                    @error('pic2')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+                <div class="mb-3">
+                    <label for="pic3" class="form-label">Foto 3 item</label><small> Max: 2MB (Kosongkan jika tidak ingin mengubah gambar)</small>
+                    <input type="file" class="form-control @error('pic3') is-invalid @enderror" id="pic3" name="pic3" value="{{ old('pic3') }}">
+                    @error('pic3')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>      
                 <input type="hidden" name="id" value="{{ $item->id }}">   
                 <button type="submit" class="btn btn-primary">Edit</button>
               </form>
