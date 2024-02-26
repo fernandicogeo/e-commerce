@@ -43,24 +43,26 @@
                 <div class="left-column">
                     <div id="carouselExampleDark" class="carousel carousel-dark slide">
                         <div class="carousel-inner">
-                        <div class="carousel-item active" data-bs-interval="10000">
-                            <img src="{{ asset('style/images/logo.png') }}" class="d-block w-100" alt="...">
-                            <div class="carousel-caption d-none d-md-block">
-                                <h5>Gambar 1</h5>
+                            @foreach ($item as $i)
+                            <div class="carousel-item active" data-bs-interval="10000">
+                                <img src="/storage/app/public/{{ $i->pic1 }}" class="d-block w-100" alt="Gambar 1">
+                                <div class="carousel-caption d-none d-md-block">
+                                    <h5>Gambar 1</h5>
+                                </div>
                             </div>
-                        </div>
-                        <div class="carousel-item" data-bs-interval="2000">
-                            <img src="{{ asset('style/images/logo.png') }}" class="d-block w-100" alt="...">
-                            <div class="carousel-caption d-none d-md-block">
-                                <h5>Gambar 2</h5>
+                            <div class="carousel-item" data-bs-interval="2000">
+                                <img src="/storage/app/public/{{ $i->pic2 }}" class="d-block w-100" alt="Gambar 2">
+                                <div class="carousel-caption d-none d-md-block">
+                                    <h5>Gambar 2</h5>
+                                </div>
                             </div>
-                        </div>
-                        <div class="carousel-item">
-                            <img src="{{ asset('style/images/logo.png') }}" class="d-block w-100" alt="...">
-                            <div class="carousel-caption d-none d-md-block">
-                                <h5>Gambar 3</h5>
+                            <div class="carousel-item">
+                                <img src="/storage/app/public/{{ $i->pic3 }}" class="d-block w-100" alt="Gambar 3">
+                                <div class="carousel-caption d-none d-md-block">
+                                    <h5>Gambar 3</h5>
+                                </div>
                             </div>
-                        </div>
+                            @endforeach
                         </div>
                         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>

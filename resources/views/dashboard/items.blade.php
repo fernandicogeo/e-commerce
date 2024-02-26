@@ -49,9 +49,9 @@
                         <td>{{ $item->stock }}</td>
                         <td>
                           <ul>
-                            <li><img src="/storage/app/public/{{ $item->pic1 }}" alt="Pic 1"></li>
-                            <li><img src="/storage/app/public/{{ $item->pic2 }}" alt="Pic 2"></li>
-                            <li><img src="/storage/app/public/{{ $item->pic2 }}" alt="Pic 3"></li>
+                            <li><img src="/storage/app/public/{{ $item->pic1 }}" alt="Pic 1" style="max-width: 50px"></li>
+                            <li><img src="/storage/app/public/{{ $item->pic2 }}" alt="Pic 2" style="max-width: 50px"></li>
+                            <li><img src="/storage/app/public/{{ $item->pic2 }}" alt="Pic 3" style="max-width: 50px"></li>
                           </ul>
                         </td>
                         <td>

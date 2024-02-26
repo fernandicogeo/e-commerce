@@ -39,24 +39,26 @@
                     <div class="left-column">
                         <div id="carouselExampleDark" class="carousel carousel-dark slide">
                             <div class="carousel-inner">
+                            @foreach ($item as $i)
                             <div class="carousel-item active" data-bs-interval="10000">
-                                <img src="{{ asset('style/images/logo.png') }}" class="d-block w-100" alt="...">
+                                <img src="/storage/app/public/{{ $i->pic1 }}" class="d-block w-100" alt="Gambar 1">
                                 <div class="carousel-caption d-none d-md-block">
                                     <h5>Gambar 1</h5>
                                 </div>
                             </div>
                             <div class="carousel-item" data-bs-interval="2000">
-                                <img src="{{ asset('style/images/logo.png') }}" class="d-block w-100" alt="...">
+                                <img src="/storage/app/public/{{ $i->pic2 }}" class="d-block w-100" alt="Gambar 2">
                                 <div class="carousel-caption d-none d-md-block">
                                     <h5>Gambar 2</h5>
                                 </div>
                             </div>
                             <div class="carousel-item">
-                                <img src="{{ asset('style/images/logo.png') }}" class="d-block w-100" alt="...">
+                                <img src="/storage/app/public/{{ $i->pic3 }}" class="d-block w-100" alt="Gambar 3">
                                 <div class="carousel-caption d-none d-md-block">
                                     <h5>Gambar 3</h5>
                                 </div>
                             </div>
+                            @endforeach
                             </div>
                             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -76,15 +78,15 @@
                             
                             <form class="mb-5 mt-5" action="{{ route('add.cart') }}" method="post" enctype="multipart/form-data">
                                 @csrf
-                                @foreach ($item as $item)
+                                @foreach ($item as $i)
                                 <div class="product-description">
                                     <span>Produk</span>
-                                    <h1>{{ $item->name }}</h1>
-                                    <p>{{ $item->description }}</p>
+                                    <h1>{{ $i->name }}</h1>
+                                    <p>{{ $i->description }}</p>
                                 </div>
                                 <div class="product-configuration">
                                     <div class="cable-config">
-                                        <span>Kuantitas, Stok : {{ $item->stock }}</span>
+                                        <span>Kuantitas, Stok : {{ $i->stock }}</span>
                                         <div class="row-quant">
                                             <div class="">
                                                 <span class="input-group-btn-quant">
@@ -94,7 +96,7 @@
                                                 </span>
                                             </div>
                                             <div class="">
-                                                <input type="text" name="quantity" class="form-control input-number" value="1" min="1" max="{{ $item->stock }}" style="width: 60px">
+                                                <input type="text" name="quantity" class="form-control input-number" value="1" min="1" max="{{ $i->stock }}" style="width: 60px">
                                             </div>
                                             <div class="">
                                                 <span class="input-group-btn-quant">
@@ -106,14 +108,14 @@
                                         </div>
                                     </div>
                                 </div>
-                                <input type="text" hidden name="item_name" value="{{ $item->name }}">
-                                <input type="text" hidden name="price" value="{{ $item->price }}">
-                                <input type="text" hidden name="item_id" value="{{ $item->id }}">
+                                <input type="text" hidden name="item_name" value="{{ $i->name }}">
+                                <input type="text" hidden name="price" value="{{ $i->price }}">
+                                <input type="text" hidden name="item_id" value="{{ $i->id }}">
                                 <div class="product-price">
-                                    <span id="price">Rp{{ number_format($item->price) }}</span>
+                                    <span id="price">Rp{{ number_format($i->price) }}</span>
                                     <button class="btn btn-submit cart-btn">Masukkan ke keranjang</button>
                                 </div>
-                                <?php $harga = $item->price;
+                                <?php $harga = $i->price;
                                 ?>
                                 @endforeach
                             </form>
