@@ -117,7 +117,7 @@
                             <input type="text" hidden name="item_id" value="{{ $item->id }}">
                             <div class="product-price">
                                 <span id="price">Rp{{ number_format($cart->total_price) }}</span>
-                                <button class="btn btn-submit cart-btn">Update keranjang</button>
+                                <button class="btn btn-submit cart-btn" style="max-width: 150px; font-size: 12px">Update keranjang</button>
                             </div>
                             <?php $harga = $item->price;
                             ?>
