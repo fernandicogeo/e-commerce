@@ -59,7 +59,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Data Pembeli (Paid)</h1>
+            <h1 class="m-0">Chat</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -76,7 +76,7 @@
           <div style="overflow-x:auto;">
             <div class="d-flex justify-content-center container mt-5">
                 <div class="wrapper-admin">
-                    <div class="main" style="margin: 120px 0px;">
+                    <div class="main">
                         <div class="px-2 scroll" id="message">
                         </div>
                         <form id="form" class="navbar bg-white navbar-expand-sm d-flex justify-content-between">

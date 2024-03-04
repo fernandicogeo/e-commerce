@@ -125,13 +125,15 @@
             </div>
         </nav>
 
-        @yield('isi')
+        <main>
+            @yield('isi')
 
-        @auth
-        <a href="{{ route('chat', 1) }}" class="float">
-            <i class="fa fa-comments my-float" aria-hidden="true"></i>
-        </a>
-        @endauth
+            @auth
+            <a href="{{ route('chat', 1) }}" class="float">
+                <i class="fa fa-comments my-float" aria-hidden="true"></i>
+            </a>
+            @endauth
+        </main>
             
         <!-- Footer-Bootom -->
         <div class="footer-bottom">
