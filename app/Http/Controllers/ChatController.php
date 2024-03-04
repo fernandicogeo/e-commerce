@@ -2,13 +2,25 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
 use App\Events\ChatEvent;
+use Illuminate\Support\Str;
+use Illuminate\Http\Request;
+use App\Models\ChatRoomUsers;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class ChatController extends Controller
 {
+    public function index()
+    {
+        $users = ChatRoomUsers::where('user_id', '!=', 1)
+            ->join('users', 'chat_room_users.user_id', '=', 'users.id')
+            ->select('chat_room_users.*', 'users.*')
+            ->get();
+
+        return view('dashboard.chats', compact('users'));
+    }
+
     public function room($room)
     {
         // Get room
@@ -17,7 +29,11 @@ class ChatController extends Controller
         // Get users
         $users = DB::table('chat_room_users')->where('chat_room_id', $room->id)->get();
 
-        return view('chat', compact('room', 'users'));
+        $redirectView = 'chat';
+
+        if (Auth::user()->role == "admin") $redirectView = 'dashboard.chat-admin';
+
+        return view($redirectView, compact('room', 'users'));
     }
 
     public function getChat($room)
@@ -93,6 +109,10 @@ class ChatController extends Controller
             ]
         ]);
 
-        return redirect()->route('chat.room', ['room' => $uuid]);
+        $redirectRoute = 'chat.room';
+
+        if (Auth::user()->role == "admin") $redirectRoute = 'chat.room.admin';
+
+        return redirect()->route($redirectRoute, ['room' => $uuid]);
     }
 }

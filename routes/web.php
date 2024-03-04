@@ -28,11 +28,6 @@ Route::get('/register', [HomeController::class, 'register'])->name('register');
 Route::post('/register', [HomeController::class, 'store'])->name('register.store');
 Route::post('/logout', [DashboardController::class, 'logout'])->name('logout');
 
-Route::get('/chat/user/{user}', [ChatController::class, 'chat'])->name('chat');
-Route::get('/chat/room/{room}', [ChatController::class, 'room'])->name('chat.room');
-Route::get('/chat/get/{room}', [ChatController::class, 'getChat'])->name('chat.get');
-Route::post('/chat/send', [ChatController::class, 'sendChat'])->name('chat.send');
-
 Route::middleware(['auth:web', 'checkrole:admin'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/unpaid', [DashboardController::class, 'index_unpaid'])->name('dashboard.unpaid');
@@ -44,6 +39,13 @@ Route::middleware(['auth:web', 'checkrole:admin'])->group(function () {
     Route::get('/edit-item/{id}', [DashboardController::class, 'edit_item'])->name('edit.item');
     Route::post('/edit-item', [DashboardController::class, 'update_item'])->name('update.item');
     Route::post('/delete-item/{id}', [DashboardController::class, 'delete_item'])->name('delete.item');
+
+    Route::get('/chat', [ChatController::class, 'index'])->name('chat.index');
+    Route::get('/chat/user/{user}', [ChatController::class, 'chat'])->name('chat');
+    Route::get('/chat/room/{room}', [ChatController::class, 'room'])->name('chat.room');
+    Route::get('/chat/room/{room}', [ChatController::class, 'room'])->name('chat.room.admin');
+    Route::get('/chat/get/{room}', [ChatController::class, 'getChat'])->name('chat.get');
+    Route::post('/chat/send', [ChatController::class, 'sendChat'])->name('chat.send');
 
     Route::post('/logout', [DashboardController::class, 'logout'])->name('logout');
 });
@@ -61,6 +63,10 @@ Route::middleware('auth:web')->group(function () {
     Route::post('/payment-cancel/{id}', [PaymentController::class, 'cancel'])->name('payment.cancel');
 
     Route::get('/history', [HistoryController::class, 'index'])->name('history');
+    Route::get('/chat/user/{user}', [ChatController::class, 'chat'])->name('chat');
+    Route::get('/chat/room/{room}', [ChatController::class, 'room'])->name('chat.room');
+    Route::get('/chat/get/{room}', [ChatController::class, 'getChat'])->name('chat.get');
+    Route::post('/chat/send', [ChatController::class, 'sendChat'])->name('chat.send');
 
     Route::post('/logout', [DashboardController::class, 'logout'])->name('logout');
 });

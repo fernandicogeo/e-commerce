@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Dashboard</title>
 
-  <link rel="icon" href="/img/pertamina.png">
+  <link rel="apple-touch-icon" href="{{ asset('/style/images/logo.png') }}">
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
@@ -25,8 +25,6 @@
   <!-- Daterange picker -->
   <link rel="stylesheet" href="/css/admin/plugins/daterangepicker/daterangepicker.css">
   <!-- summernote -->
-  <!--===============================================================================================-->	
-	<link rel="icon" type="image/png" href="/img/icons/favicon.ico"/>
   <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="/vendor/bootstrap/css/bootstrap.min.css">
   <!--===============================================================================================-->
@@ -243,6 +241,14 @@
                   <i class="bi bi-archive-fill"></i>
                   <p>
                     Data Item
+                  </p>
+                </a>
+              </li> 
+              <li class="nav-item">
+                <a href="{{ route('chat.index') }}" class="nav-link">
+                  <i class="fa fa-comments"></i>
+                  <p>
+                    Chat
                   </p>
                 </a>
               </li> 

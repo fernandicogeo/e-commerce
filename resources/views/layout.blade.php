@@ -127,11 +127,11 @@
 
         @yield('isi')
 
-        
-    
-        <a href="{{ route('chat', 0) }}" class="float">
+        @auth
+        <a href="{{ route('chat', 1) }}" class="float">
             <i class="fa fa-comments my-float" aria-hidden="true"></i>
         </a>
+        @endauth
             
         <!-- Footer-Bootom -->
         <div class="footer-bottom">
