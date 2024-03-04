@@ -7,7 +7,6 @@
 @section('isi')
 
 <!-- Footer-Area -->
-<footer class="footer-area">
     <div class="section-padding">
         <div class="container">
             <div class="row">

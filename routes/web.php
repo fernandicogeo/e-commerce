@@ -2,10 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\ChatController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\HistoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +27,11 @@ Route::post('/login', [HomeController::class, 'authenticate'])->name('login.auth
 Route::get('/register', [HomeController::class, 'register'])->name('register');
 Route::post('/register', [HomeController::class, 'store'])->name('register.store');
 Route::post('/logout', [DashboardController::class, 'logout'])->name('logout');
+
+Route::get('/chat/user/{user}', [ChatController::class, 'chat'])->name('chat');
+Route::get('/chat/room/{room}', [ChatController::class, 'room'])->name('chat.room');
+Route::get('/chat/get/{room}', [ChatController::class, 'getChat'])->name('chat.get');
+Route::post('/chat/send', [ChatController::class, 'sendChat'])->name('chat.send');
 
 Route::middleware(['auth:web', 'checkrole:admin'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
