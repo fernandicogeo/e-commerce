@@ -51,7 +51,7 @@ class ChatController extends Controller
 
     public function chat($user)
     {
-        $my_id = auth()->user()->id;
+        $my_id = auth()->user()->id ?? 1;
         $target_id = $user;
 
         $my_room = DB::table('chat_room_users');

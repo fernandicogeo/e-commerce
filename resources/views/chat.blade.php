@@ -59,7 +59,7 @@
 </style>
 <div class="d-flex justify-content-center container mt-5">
     <div class="wrapper">
-        <div class="main">
+        <div class="main" style="margin: 120px 0px;">
             <div class="px-2 scroll" id="message">
             </div>
             <form id="form" class="navbar bg-white navbar-expand-sm d-flex justify-content-between">
@@ -71,12 +71,10 @@
         </div>
     </div>
 </div>
+
 @php
     $userId = Auth::id() ?? 1;
 @endphp
-
-
-
 {{-- Load pusher library --}}
 <script src="https://js.pusher.com/7.2/pusher.min.js"></script>
 <script>
@@ -91,8 +89,8 @@
         data.map(r => {
             chatsHTML += `
                 <div class="d-flex align-items-center
-                    ${r.user_id == "0" ? 'text-right justify-content-end' : ''}">
-                    <div class="pr-2 ${r.user_id == "0" ? '' : 'pl-1'}"> <span class="name">${r.user_name}</span>
+                    ${r.user_id == "{{ $userId }}" ? 'text-right justify-content-end' : ''}">
+                    <div class="pr-2 ${r.user_id == "{{ $userId }}" ? '' : 'pl-1'}"> <span class="name">${r.user_name}</span>
                         <p class="msg">${r.message}</p>
                     </div>
                 </div>`
@@ -122,7 +120,7 @@
             ev.preventDefault()
 
             const message = document.querySelector('input[name="text"]')
-            const response = await fetch('/chat/send/', {
+            const response = await fetch('/chat/send', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
